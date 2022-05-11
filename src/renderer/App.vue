@@ -10,7 +10,6 @@
   }
 </script>
 
-<style>
-  /* CSS */
-  
+<style lang="less">
+	@import url("assets/less/App.less");
 </style>

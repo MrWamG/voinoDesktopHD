@@ -1,0 +1,102 @@
+/* CSS */
+
+@charset "utf-8";
+/* CSS Document */
+
+/* 初始化*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+}
+
+body,html {
+    color: #333;
+    background: none;
+    font-family: "微软雅黑";
+    word-break: break-all;
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+li {
+    list-style: none;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+}
+
+/* 主色 */
+@c: #ec5555;
+
+.mt16 {
+    margin-top: 16rpx;
+}
+
+.h16 {
+    height: 16rpx;
+}
+
+.h30 {
+    height: 30rpx;
+}
+
+.h100 {
+    height: 100rpx;
+}
+
+// 
+.flex {
+    flex: 1;
+}
+
+// 文本一行 溢出隐藏
+.text_one {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

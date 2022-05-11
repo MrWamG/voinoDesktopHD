@@ -38,6 +38,12 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  mainWindow.setMenu(null)
+  // 设置窗口是否可以由用户手动最大化。
+  mainWindow.setMaximizable(false)
+  // 设置用户是否可以调节窗口尺寸
+  mainWindow.setResizable(false)
 }
 
 app.on('ready', createWindow)
