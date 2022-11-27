@@ -2,7 +2,8 @@
 	<div class="player">
 		<section
 			:class="'voi_container ' + 
-				(upBoard.visible && 'up_show')">
+				(upBoard.visible && 'up_show')"
+			@click.middle="showBoard">
 			<section class="voi_child_box">
 				<div
 					class="voi_child"
@@ -45,6 +46,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 右边 -->
 				<div class="voi_child" title="下一首">
 					<div class="voi_arrow_right">
 						<div class="voi_arrow_left_line"></div>
@@ -52,6 +54,7 @@
 					</div>
 					<div class="voi_child_content"></div>
 				</div>
+				<!-- 中下 -->
 				<div class="voi_child" title="随机播放">
 					<div class="voi_random_ico">
 						<svg viewBox="0 0 1024 1024">
@@ -61,6 +64,7 @@
 					</div>
 					<div class="voi_child_content"></div>
 				</div>
+				<!-- 左边 -->
 				<div class="voi_child" title="上一首">
 					<div class="voi_arrow_left">
 						<div class="voi_arrow_left_line"></div>
@@ -80,13 +84,17 @@
 				<div class="voi_main_content"></div>
 			</section><!-- voi_main_box -->
 		</section>
+		<Board ref="Board"></Board>
 	</div>
 </template>
 
 <script>
+	import Board from "../Board";
 	export default {
 		name: 'Player',
-		components: {},
+		components: {
+			Board
+		},
 		data() {
 			return {
 				win:null, // 当前窗口实例对象
@@ -114,11 +122,16 @@
 		},
 		unmounted() { },
 		methods: {
+			// 鼠标中键播放器总体，显示快捷面板
+			showBoard(event){
+				this.$refs.Board.show();
+			},
+			// 关闭上方的方块
 			closeUp(){
 				console.log("close")
 				this.upBoard.visible = false;
 			},
-			//	 点击了上方的方块，显示上方的面板
+			// 点击了上方的方块，显示上方的面板
 			showUp(){
 				console.log("test");
 				this.upBoard.visible = true;
