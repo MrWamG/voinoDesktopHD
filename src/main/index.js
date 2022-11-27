@@ -8,56 +8,56 @@ import '../renderer/store'
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
+    ? `http://localhost:9080`
+    : `file://${__dirname}/index.html`
 
-function createWindow () {
-  /**
-   * Initial window options
-   */
-  mainWindow = new BrowserWindow({
-    // height: 563,
-    fullscreen: true,
-    frame: false,
-    transparent: true,
-    resizable: false,
-    alwaysOnTop: false,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  })
+function createWindow() {
+    /**
+     * Initial window options
+     */
+    mainWindow = new BrowserWindow({
+        // height: 563,
+        fullscreen: true,
+        frame: false,
+        transparent: true,
+        resizable: false,
+        alwaysOnTop: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    })
 
-  mainWindow.loadURL(winURL)
+    mainWindow.loadURL(winURL)
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+    mainWindow.on('closed', () => {
+        mainWindow = null
+    })
 
-  mainWindow.setMenu(null)
-  // 设置窗口是否可以由用户手动最大化。
-  mainWindow.setMaximizable(false)
-  // 设置用户是否可以调节窗口尺寸
-  mainWindow.setResizable(false)
+    mainWindow.setMenu(null)
+    // 设置窗口是否可以由用户手动最大化。
+    mainWindow.setMaximizable(false)
+    // 设置用户是否可以调节窗口尺寸
+    mainWindow.setResizable(false)
 }
 
 app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })
 
 app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow()
+    }
 })
 
 /**
