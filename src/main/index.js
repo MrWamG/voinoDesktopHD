@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, screen } from 'electron'
 import '../renderer/store'
 
 /**
@@ -21,8 +21,8 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        // height: 563,
-        fullscreen: true,
+        width: screen.getPrimaryDisplay().workAreaSize.width, 
+        height: screen.getPrimaryDisplay().workAreaSize.height, 
         frame: false,
         transparent: true,
         resizable: false,
@@ -35,6 +35,7 @@ function createWindow() {
 
     mainWindow.loadURL(winURL)
 
+    // 当主窗口被关闭
     mainWindow.on('closed', () => {
         mainWindow = null
     })

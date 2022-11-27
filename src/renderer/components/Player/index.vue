@@ -1,17 +1,22 @@
 <template>
 	<div class="player">
-		<section class="voi_container">
+		<section
+			:class="'voi_container ' + 
+				(upBoard.visible && 'up_show')">
 			<section class="voi_child_box">
-				<div class="voi_child" id="voiUpBtn">
+				<div
+					class="voi_child"
+					id="voiUpBtn"
+					@click="showUp">
 					<div class="voi_child_content">
 						<svg class="voi_song_list_svg" viewBox="0 0 1024 1024" width="25">
 							<path class="voi_song_list_path" />
 						</svg>
-						<div class="voi_song_list_box">
+						<div class="voi_song_list_box" @click.stop>
 							<div class="voi_song_list_relative">
 								<div class="voi_song_cover_box">
 									<div class="voi_song_cover_main">
-										<img src="http://www.sbeam.xyz/voinoVue/static/img/april02.jpg" ondragstart="return false" />
+										<img src="http://p1.music.126.net/uxCYDQ0TShRPlxLifK4WKQ==/562949953433262.jpg?param=130y130" ondragstart="return false" />
 									</div>
 								</div>
 								<div class="voi_song_list_operate_box">
@@ -27,9 +32,9 @@
 													 p-id="6508" fill="#ffffff" />
 												</svg>
 											</div>
-											<div class="voi_off_btn">
+											<div class="voi_off_btn" @click="closeUp">
 												<div class="voi_off_btn_line"></div>
-												9[8i-670ert6ei76e060dfdeei7<div class="voi_off_btn_line" style="transform:rotate(-45deg)"></div>
+												<div class="voi_off_btn_line" style="transform:rotate(-45deg)"></div>
 											</div>
 										</div>
 									</div>
@@ -91,6 +96,9 @@
 					songAuthor: "",
 					vAudioIsReady: false,
 				},
+				upBoard:{
+					visible:false,
+				}, // 上方面板相关配置
 			}
 		},
 		created() {
@@ -99,13 +107,22 @@
 			// let win = require('electron').remote.getCurrentWindow();
 		},
 		mounted() {
+			// 在当前页面中挂在 electron 实例
 			this.win = require('electron').remote.getCurrentWindow();
 			// this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
 			// console.log(win.blur);
 		},
 		unmounted() { },
 		methods: {
-
+			closeUp(){
+				console.log("close")
+				this.upBoard.visible = false;
+			},
+			//	 点击了上方的方块，显示上方的面板
+			showUp(){
+				console.log("test");
+				this.upBoard.visible = true;
+			},
 		}
 	}
 </script>
