@@ -59,6 +59,7 @@
     "axios": "^0.18.0",
     "less": "^4.1.2",
     "less-loader": "5.0.0",
+    "voino": "file:",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",

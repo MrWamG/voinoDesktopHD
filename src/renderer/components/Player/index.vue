@@ -1,5 +1,9 @@
 <template>
-	<div class="player">
+	<div
+		class="player"
+		@mouseenter="onmouseover"
+		@mouseleave="onmouseleave"
+	>
 		<section
 			:class="'voi_container ' + 
 				(upBoard.visible && 'up_show')"
@@ -117,23 +121,28 @@
 		mounted() {
 			// 在当前页面中挂在 electron 实例
 			this.win = require('electron').remote.getCurrentWindow();
-			// this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
+			// 默认支持穿透
+			this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
 			// console.log(win.blur);
 		},
 		unmounted() { },
 		methods: {
+			onmouseover() {
+				this.win.setIgnoreMouseEvents(false); // 禁止当前窗口点击穿透
+			},
+			onmouseleave() {
+				this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
+			},
 			// 鼠标中键播放器总体，显示快捷面板
 			showBoard(event){
 				this.$refs.Board.show();
 			},
 			// 关闭上方的方块
 			closeUp(){
-				console.log("close")
 				this.upBoard.visible = false;
 			},
 			// 点击了上方的方块，显示上方的面板
 			showUp(){
-				console.log("test");
 				this.upBoard.visible = true;
 			},
 		}

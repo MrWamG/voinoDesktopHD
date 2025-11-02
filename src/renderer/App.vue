@@ -12,4 +12,7 @@
 
 <style lang="less">
 	@import url("assets/less/App.less");
+  body,html{
+    pointer-events: none;
+  }
 </style>
