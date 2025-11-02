@@ -36,7 +36,10 @@
                     </div>
                 </div>
             </div>
-            <div class="box more">
+            <div :class="{
+                box: true,
+                more: true,
+            }">
                 <div class="content">
                     <div class="dotBox">
                         <div class="dot"></div>

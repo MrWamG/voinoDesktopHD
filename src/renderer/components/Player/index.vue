@@ -115,15 +115,12 @@
 		},
 		created() {
 			
-			
-			// let win = require('electron').remote.getCurrentWindow();
 		},
 		mounted() {
 			// 在当前页面中挂在 electron 实例
 			this.win = require('electron').remote.getCurrentWindow();
 			// 默认支持穿透
 			this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
-			// console.log(win.blur);
 		},
 		unmounted() { },
 		methods: {
