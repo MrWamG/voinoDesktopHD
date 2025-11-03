@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="cancelBtn" ref="cancelBtn" @mousedown="hide">
+            <div class="cancelBtn" ref="cancelBtn" @click="hide">
                 <div class="content">
                     <div class="line"></div>
                     <div class="line"></div>
@@ -109,6 +109,8 @@
                 setTimeout(()=>{
                     this.visible = false;
                     this.goHide = false;
+                    // 因为关闭后，鼠标所处区域大概率是没有东西的，因此允许穿透
+                    this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
                 },200)
             },
         },
