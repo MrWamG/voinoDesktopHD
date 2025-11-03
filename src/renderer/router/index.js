@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: require('@/components/Player/index').default
+      component: require('@/views/index/index.vue').default
     },
     {
       path: '*',

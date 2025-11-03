@@ -15,4 +15,8 @@
   body,html{
     pointer-events: none;
   }
+  ::selection {
+    color: #fff;
+    background: #EC5555;
+  }
 </style>
