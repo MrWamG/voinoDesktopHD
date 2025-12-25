@@ -35,7 +35,7 @@
 			.content{
 				animation: cancelBtn 0.6s ease;
 				animation-fill-mode: forwards;
-				animation-delay: 0.4s;
+				animation-delay: 0.5s;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -121,6 +121,8 @@
 				align-items: center;
 				transform: rotate(-45deg);
 				text-align: center;
+				/* 图标的实际宽高可能会入侵其他的 box */
+				pointer-events: none;
 				.icon {
 					transition: all 0.6s ease;
 					path{
@@ -158,25 +160,25 @@
 			}
 		}
 		.login{
-			animation:login 0.5s ease;
+			animation:scaleShow 0.5s ease;
 			top: -10%;
 			left: 25%;
 		}
 		.find{
-			animation:find 0.5s ease;
+			animation:scaleShow 0.5s ease;
 			animation-delay: 0.1s;
 			top: 25%;
 			left: -10%;
 		}
 		.more{
-			animation:more 0.5s ease;
-			animation-delay: 0.3s;
+			animation:scaleShow 0.5s ease;
+			animation-delay: 0.2s;
 			left: 25%;
 			top: 60%;
 		}
 		.songList{
-			animation:songList 0.5s ease;
-			animation-delay: 0.2s;
+			animation:scaleShow 0.5s ease;
+			animation-delay: 0.3s;
 			top: 25%;
 			left: 60%;
 		}
@@ -189,34 +191,14 @@
 	transform:translate(-50%,-50%) scale(0);
 }
 
-@keyframes login{
+@keyframes scaleShow{
 	0%{
 		transform: rotate(45deg) translate(0%,0%) scale(0);
 	}100%{
 		transform: rotate(45deg) translate(0%,0%) scale(1);
 	}
 }
-@keyframes find{
-	0%{
-		transform: rotate(45deg) translate(0%,0%) scale(0);
-	}100%{
-		transform: rotate(45deg) translate(0%,0%) scale(1);
-	}
-}
-@keyframes more{
-	0%{
-		transform: rotate(45deg) translate(0%,0%) scale(0);
-	}100%{
-		transform: rotate(45deg) translate(0%,0%) scale(1);
-	}
-}
-@keyframes songList{
-	0%{
-		transform: rotate(45deg) translate(0%,0%) scale(0);
-	}100%{
-		transform: rotate(45deg) translate(0%,0%) scale(1);
-	}
-}
+
 @keyframes boardShow{
 	0%{
 		opacity: 0;

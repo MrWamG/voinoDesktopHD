@@ -33,6 +33,13 @@
     transition: all 0.3s ease;
     &:hover{
         background: #fff;
+        .voi_random_ico{
+            svg{
+                path{
+                    fill: #ec5555;
+                }
+            }
+        }
         .voi_arrow_left_line {
             background: #ec5555;
         }
@@ -93,20 +100,33 @@
     background: #fff;
     position: absolute;
     transform: rotate(45deg);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-}
-
-.voi_main_box:hover {
-    background: #ec5555;
-}
-
-.voi_main_box:active {
-    filter: brightness(85%);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0),
+        0 0 20px rgba(0, 0, 0, 0.4)
+    ;
+    box-sizing: border-box;
+    &:hover {
+        box-shadow: 
+            inset 0 0 30px rgba(0, 0, 0, 0.4),
+            0 0 20px rgba(0, 0, 0, 0.4)
+        ;
+        .voi_main_svg_box{
+            .loadSvg{
+                circle {
+                    fill: #fff;
+                    stroke: #fff;
+                }
+            }
+        }
+    }
+    &:active {
+        filter: brightness(85%);
+    }
 }
 
 .voi_main_content {
@@ -150,12 +170,6 @@
 
 #voiUpBtn:hover .voi_song_list_path {
     fill: #ec5555;
-}
-
-.voi_main_box:hover .voi_svg,
-.loadSvg circle {
-    fill: #fff;
-    stroke: #fff;
 }
 
 .voi_arrow_left {
@@ -204,16 +218,14 @@
     left: -20px;
 }
 
-.voi_random_ico>svg {
-    width: 25px;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    transform: rotate(-45deg);
-}
-
-.voi_child:hover>.voi_random_ico>svg>path {
-    fill: #ec5555;
+.voi_random_ico{
+    svg {
+        width: 25px;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        transform: rotate(-45deg);
+    }
 }
 
 /* 开始歌曲详情处理 */
@@ -243,22 +255,21 @@
     height: 60px;
     overflow: hidden;
     box-sizing: border-box;
-}
-
-.voi_song_cover_main>img {
-    width: calc(100% + 25px);
-    height: calc(100% + 25px);
-    position: absolute;
-    transform: rotate(-45deg) translate(-50%, -50%);
-    left: 80%;
-    top: -20%;
-    moz-user-select: -moz-none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    img {
+        width: calc(100% + 25px);
+        height: calc(100% + 25px);
+        position: absolute;
+        transform: rotate(-45deg) translate(-50%, -50%);
+        left: 80%;
+        top: -20%;
+        moz-user-select: -moz-none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 }
 
 .voi_song_list_operate_box {

@@ -88,47 +88,85 @@
 				<div class="voi_main_content"></div>
 			</section><!-- voi_main_box -->
 		</section>
-		<Board ref="Board"></Board>
+		<Board ref="Board" :win="win"></Board>
 	</div>
 </template>
 
 <script>
 	import Board from "../Board";
+	import * as apis from "@/api/netease/index.js"
 	export default {
 		name: 'Player',
 		components: {
 			Board
 		},
+		props: {
+            // 当前窗口实例对象
+            win: {
+                type: Object,
+                default: () => {
+                    return null
+                }
+            },
+        },
 		data() {
 			return {
-				win:null, // 当前窗口实例对象
-				musicPlayer: {/* 音乐播放器操作 */
+				/* 音乐播放器操作 */
+				musicPlayer: {
 					songName: "",
 					songSrc: "",
 					songAuthor: "",
 					vAudioIsReady: false,
 				},
+				/* 上方面板相关配置 */
 				upBoard:{
 					visible:false,
-				}, // 上方面板相关配置
+				},
 			}
 		},
 		created() {
-			
+			this.getSongList(71938259);
+			this.getSongList(71938259,1000);
+			console.log("this.$store.state.Songs.list=>",this.$store.state.Songs.list)
 		},
 		mounted() {
 			// 在当前页面中挂在 electron 实例
 			this.win = require('electron').remote.getCurrentWindow();
+			// 测试的
+			this.win.setIgnoreMouseEvents(false); // 禁止当前窗口点击穿透
 			// 默认支持穿透
-			this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
+			// this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
 		},
 		unmounted() { },
 		methods: {
+			// 获取某个歌单，并且以 id 为 key 更新到 $store.state.Songs 中的 list
+			async getSongList(id, offset = 0,limit = 1000) {
+				await apis.trackAll({
+					id,
+					offset,
+					limit,
+					cookie: "MUSIC_U=" + JSON.parse(localStorage.getItem("Cookie")).MUSIC_U
+				}).then(res=>{
+					// 更新 $store.state.Songs.list 中某个对应 id key 的数据
+					this.$store.dispatch(
+						"Songs/updateList",
+						{
+							id,
+							/**
+							 * @param {Number} code
+							 * @param {Array} privileges
+							 * @param {Array} songs 实际上只有 songs 对我是有用的，code 和 privileges 我并不会去刻意保存
+							 */
+							...res,
+						}
+					)
+				})
+			},
 			onmouseover() {
-				this.win.setIgnoreMouseEvents(false); // 禁止当前窗口点击穿透
+				// this.win.setIgnoreMouseEvents(false); // 禁止当前窗口点击穿透
 			},
 			onmouseleave() {
-				this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
+				// this.win.setIgnoreMouseEvents(true, {forward: true}); // 允许当前窗口点击穿透
 			},
 			// 鼠标中键播放器总体，显示快捷面板
 			showBoard(event){
